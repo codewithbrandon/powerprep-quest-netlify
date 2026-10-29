@@ -19,7 +19,6 @@
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "netlify-cli": "^17.38.0"
+    "concurrently": "^8.2.2"
   }
 }
