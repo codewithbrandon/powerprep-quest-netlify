@@ -1,0 +1,25 @@
+{
+  "name": "powerprep-quest",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gamified study app for Microsoft PL-200 and PL-300 certification exams",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "seed": "npm run seed --prefix server",
+    "server": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "npm run db:up && npm run seed --silent && concurrently -k -n SERVER,CLIENT -c green,cyan \"npm:server\" \"npm:client\"",
+    "start": "npm run dev",
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start:prod": "npm run start --prefix server"
+  },
+  "dependencies": {
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "netlify-cli": "^17.38.0"
+  }
+}

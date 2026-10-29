@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: powerprep-quest-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: powerprep
+      POSTGRES_PASSWORD: powerprep_dev_password
+      POSTGRES_DB: powerprep
+    ports:
+      - "5432:5432"
+    volumes:
+      - powerprep_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U powerprep -d powerprep"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  powerprep_pgdata:
